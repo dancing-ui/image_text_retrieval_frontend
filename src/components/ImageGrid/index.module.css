@@ -1,0 +1,75 @@
+.container {
+  width: 100%;
+  padding: 0;
+  max-width: none;
+}
+
+.emptyState {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  border: 2px dashed #d9d9d9;
+}
+
+.modelSection {
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.modelTitle {
+  color: #1890ff !important;
+  margin-bottom: 20px !important;
+  padding-left: 16px;
+  border-left: 4px solid #1890ff;
+}
+
+.imageRow {
+  margin-bottom: 20px;
+}
+
+.imageCard {
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.imageCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.imageContainer {
+  height: 200px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+}
+
+.image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+}
+
+.cardMeta {
+  text-align: center;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+  
+  .modelTitle {
+    font-size: 18px !important;
+  }
+  
+  .imageContainer {
+    height: 150px;
+  }
+}
