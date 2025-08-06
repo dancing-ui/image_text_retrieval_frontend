@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const API_BASE_URL = 'http://127.0.0.1:9527/api/v1';
-const API_BASE_URL = 'http://127.0.0.1:4523/m1/6893955-6609657-default/api/v1'
+const API_BASE_URL = 'http://127.0.0.1:9527/api/v1'
+// const API_BASE_URL = 'http://127.0.0.1:4523/m1/6893955-6609657-default/api/v1'
 
 const API_OK_STATUS = 1;
 
