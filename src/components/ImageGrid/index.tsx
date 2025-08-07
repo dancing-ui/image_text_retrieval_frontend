@@ -49,45 +49,63 @@ const ImageGrid: React.FC<ImageGridProps> = ({ searchResults }) => {
             <Row gutter={[8, 8]} className={styles.imageRow}>
               {images.map((imageData, index) => (
                 <Col xs={12} sm={8} md={6} lg={4} xl={3} xxl={2} key={`${modelName}-${imageData.id}-${index}`}>
-                  <Card
-                    hoverable
-                    className={styles.imageCard}
-                    cover={
-                      <div className={styles.imageContainer}>
-                        <Image
-                          src={getImageSrc(imageData.pic)}
-                          alt={`Image ${imageData.id}`}
-                          className={styles.image}
-                          preview={{
-                            mask: '预览图片'
-                          }}
-                          onError={() => console.error(`Failed to load image: ${imageData.id}`)}
-                        />
-                      </div>
-                    }
-                  >
-                    <Card.Meta
-                      title={
-                        <div className={styles.cardMeta}>
-                          <Text strong>图片ID: {imageData.id}</Text>
+                  <div className={imageData.is_query ? styles.highlightWrapper : styles.normalWrapper}>
+                    <Card
+                      hoverable
+                      className={styles.imageCard}
+                      cover={
+                        <div className={styles.imageContainer}>
+                          <Image
+                            src={getImageSrc(imageData.pic)}
+                            alt={`Image ${imageData.id}`}
+                            className={styles.image}
+                            preview={{
+                              mask: '预览图片'
+                            }}
+                            onError={() => console.error(`Failed to load image: ${imageData.id}`)}
+                          />
                         </div>
                       }
-                      description={
-                        <div className={styles.cardMeta}>
-                          <div style={{ marginBottom: '4px' }}>
-                            <Text type="secondary">
-                              {getImageTypeDescription(imageData.is_query || false)}
-                            </Text>
+                    >
+                      <Card.Meta
+                        title={
+                          <div className={styles.cardMeta}>
+                            <Text strong>图片ID: {imageData.id}</Text>
                           </div>
-                          <div>
-                            <Text type="secondary">
-                              概率: {(imageData.score * 100).toFixed(1)}%
-                            </Text>
+                        }
+                        description={
+                          <div className={styles.cardMeta}>
+                            <div style={{ marginBottom: '4px' }}>
+                              <Text type="secondary">
+                                {getImageTypeDescription(imageData.is_query || false)}
+                              </Text>
+                            </div>
+                            { !imageData.is_query && (
+                              <div>
+                                <Text type="secondary">
+                                  概率: {(imageData.score * 100).toFixed(1)}%
+                                </Text>
+                              </div>
+                            )}
+                            { !imageData.is_query && (
+                              <div>
+                                <Text 
+                                  type="secondary"
+                                  style={{ 
+                                    color: '#1890ff',
+                                    fontWeight: 'bold',
+                                    fontSize: '12px'
+                                  }}
+                                >
+                                  Top-{index}
+                                </Text>
+                              </div>
+                            )}
                           </div>
-                        </div>
-                      }
-                    />
-                  </Card>
+                        }
+                      />
+                    </Card>
+                  </div>
                 </Col>
               ))}
             </Row>

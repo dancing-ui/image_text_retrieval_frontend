@@ -59,6 +59,47 @@
   text-align: center;
 }
 
+/* 普通卡片包装器 */
+.normalWrapper {
+  width: 100%;
+  height: 100%;
+}
+
+/* 高亮卡片包装器 (is_query=true) */
+.highlightWrapper {
+  width: 100%;
+  height: 100%;
+  padding: 4px;
+  border: 3px solid #1890ff;
+  border-radius: 12px;
+  background: linear-gradient(45deg, #1890ff, #40a9ff, #1890ff, #40a9ff);
+  background-size: 400% 400%;
+  animation: highlightGlow 3s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(24, 144, 255, 0.3);
+}
+
+/* 高亮动画效果 */
+@keyframes highlightGlow {
+  0% {
+    background-position: 0% 50%;
+    box-shadow: 0 0 20px rgba(24, 144, 255, 0.3);
+  }
+  50% {
+    background-position: 100% 50%;
+    box-shadow: 0 0 30px rgba(24, 144, 255, 0.5);
+  }
+  100% {
+    background-position: 0% 50%;
+    box-shadow: 0 0 20px rgba(24, 144, 255, 0.3);
+  }
+}
+
+/* 高亮框内的卡片样式调整 */
+.highlightWrapper .imageCard {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
 /* 响应式设计 */
 @media (max-width: 768px) {
   .container {
@@ -71,5 +112,10 @@
   
   .imageContainer {
     height: 150px;
+  }
+  
+  .highlightWrapper {
+    padding: 3px;
+    border-width: 2px;
   }
 }
