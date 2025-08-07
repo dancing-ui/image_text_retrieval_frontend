@@ -6,7 +6,7 @@ import type { ImageResult } from '../../types'
 
 const { Text } = Typography;
 
-const MODLES = ["cfine", "ours"]
+const MODLES = ["cfine", "amds"]
 
 const validateImageResult = (item: any): item is ImageResult => {
   return (
@@ -14,7 +14,8 @@ const validateImageResult = (item: any): item is ImageResult => {
     item !== null &&
     (typeof item.id === 'number') &&
     typeof item.score === 'number' &&
-    typeof item.pic === 'string'
+    typeof item.pic === 'string' && 
+    typeof item.is_query === 'boolean'
   );
 };
 
@@ -35,15 +36,21 @@ const transformAndValidateData = (data: any): ImageResult[] => {
       results.push({
         id: item.id,
         score: item.score,
-        pic: item.pic
+        pic: item.pic,
+        is_query: item.is_query
       });
     } else {
       console.warn('跳过格式不正确的数据项:', item);
     }
   }
+  results.sort((a, b) => {
+    if (a.is_query === b.is_query) {
+      return 0;
+    }
+    return a.is_query ? -1 : 1;
+  });
   return results;
 };
-
 
 interface SearchBoxProps {
   onSearchResults: (result: Map<string, ImageResult[]>) => void

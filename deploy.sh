@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-PORT=9528
+PORT=4522
 PROJECT_NAME="image-text-retrieval"
 
 echo "开始部署 $PROJECT_NAME..."

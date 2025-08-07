@@ -30,6 +30,10 @@ const ImageGrid: React.FC<ImageGridProps> = ({ searchResults }) => {
     return `data:image/jpeg;base64,${base64Data}`;
   };
 
+  const getImageTypeDescription = (isQuery: boolean) => {
+    return isQuery ? "类型：原图" : "类型：相似图";
+  };
+
   return (
     <div className={styles.container}>
       {Array.from(searchResults.entries()).map(([modelName, images]) => (
@@ -70,9 +74,16 @@ const ImageGrid: React.FC<ImageGridProps> = ({ searchResults }) => {
                       }
                       description={
                         <div className={styles.cardMeta}>
-                          <Text type="secondary">
-                            概率: {(imageData.score).toFixed(1)}%
-                          </Text>
+                          <div style={{ marginBottom: '4px' }}>
+                            <Text type="secondary">
+                              {getImageTypeDescription(imageData.is_query || false)}
+                            </Text>
+                          </div>
+                          <div>
+                            <Text type="secondary">
+                              概率: {(imageData.score * 100).toFixed(1)}%
+                            </Text>
+                          </div>
                         </div>
                       }
                     />
